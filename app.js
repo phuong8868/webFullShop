@@ -1,4 +1,3 @@
-require('dotenv').config();
 var createError = require('http-errors');
 var cors = require('cors');
 var express = require('express');
@@ -16,7 +15,7 @@ var orderRouter = require('./routes/order');
 var app = express();
 
 // Mongoose connection
-var uri = process.env.MONGODB_URI || "mongodb+srv://phuongtdgbh200021:Thanhan1213%40@cluster0.ekftst1.mongodb.net/"; // Use an environment variable for the URI
+var uri = "mongodb+srv://phuongtdgbh200021:Thanhan1213%40@cluster0.ekftst1.mongodb.net/your_database_name"; 
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
