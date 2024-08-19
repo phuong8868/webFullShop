@@ -1,0 +1,24 @@
+{{ layout}}
+
+<div class="container mt-5">
+  <h2>Edit Clothing Item</h2>
+  <form action="/admin/edit/{{item._id}}" method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{item.name}}" required>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" class="form-control" id="price" name="price" value="{{item.price}}" required>
+    </div>
+    <div class="mb-3">
+      <label for="linkPhoto" class="form-label">Photo URL</label>
+      <input type="text" class="form-control" id="linkPhoto" name="linkPhoto" value="{{item.linkPhoto}}" required>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="3" required>{{item.description}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-warning">Update Clothing Item</button>
+  </form>
+</div>

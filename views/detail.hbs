@@ -1,0 +1,25 @@
+{{ layout}}
+
+<div class="product-detail container">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{#if product.linkPhoto}}{{product.linkPhoto}}{{else}}/images/productdemo.jpg{{/if}}" class="main-product-image" alt="{{product.name}}">
+      <div class="product-thumbnails">
+        <img src="{{#if product.linkPhoto}}{{product.linkPhoto}}{{else}}/images/productdemo.jpg{{/if}}" alt="Thumbnail">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2>{{product.name}}</h2>
+      <p class="price">{{product.price}}</p>
+      <p>{{product.description}}</p>
+
+      <form action="/orders/create/{{product._id}}" method="POST">
+        <div class="mb-3">
+          <label for="quantity" class="form-label">Quantity</label>
+          <input type="number" id="quantity" name="quantity" min="1" value="1" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-dark add-to-cart-btn">Order Now</button>
+      </form>
+    </div>
+  </div>
+</div>

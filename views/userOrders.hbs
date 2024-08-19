@@ -1,0 +1,19 @@
+{{ layout}}
+
+<div class="container mt-5">
+  <h2>Your Orders</h2>
+  {{#if orders.length}}
+    <ul class="list-group">
+      {{#each orders}}
+        <li class="list-group-item">
+          <h5>{{this.clothingItemId.name}}</h5>
+          <p>Quantity: {{this.quantity}}</p>
+          <p>Total Price: ${{this.totalPrice}}</p>
+          <p>Ordered on: {{this.orderDate}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>You have no orders yet.</p>
+  {{/if}}
+</div>
