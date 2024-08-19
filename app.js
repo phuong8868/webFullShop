@@ -4,7 +4,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongoose = require('mongoose'); 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,41 +13,30 @@ var orderRouter = require('./routes/order');
 
 var app = express();
 
-// Mongoose connection
-var uri = "mongodb+srv://phuongtdgbh200021:Thanhan1213%40@cluster0.ekftst1.mongodb.net/your_database_name"; 
+// body-parser
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// mongoose
+var mongoose = require('mongoose'); 
+var uri = "mongodb+srv://phuongtdgbh200021:Thanhan1213%40@cluster0.ekftst1.mongodb.net/test";
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => console.log('Connected to MongoDB successfully'))
-.catch(err => console.error('MongoDB connection error:', err));
-
-// Handle mongoose connection events
-mongoose.connection.on('connected', () => {
-  console.log('Mongoose connected to DB');
-});
-
-mongoose.connection.on('error', (err) => {
-  console.error('Mongoose connection error:', err);
-});
-
-mongoose.connection.on('disconnected', () => {
-  console.log('Mongoose disconnected from DB');
-});
+.then(() => console.log('connect to db succeed'))
+.catch(err => console.log(err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
-// Middleware
 app.use(cors());
 app.use(logger('dev'));
-app.use(express.json());  // Replace body-parser with built-in express functionality
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
 app.use('/', indexRouter);
 app.use('/clothing', clothingItemRouter); 
 app.use('/admin', adminRouter); 
@@ -69,7 +57,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// Server port setup
+// port
 app.listen(process.env.PORT || 3001, () => {
   console.log("Server is running on port 3001");
 });
